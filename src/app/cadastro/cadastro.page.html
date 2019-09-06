@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <fieldset>
+      <legend>Cadastro de Produtos</legend>
+      <form [formGroup]="produtoForm" (submit)="(!edit) ? addProduto() : editProduto()">
+          <div class="form-group" *ngIf="edit">
+              <label for="id_" class="sr-only">ID</label>
+              <input type="hidden" formControlName="id" id="id_" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="id_nome">Nome</label>
+              <input type="text" formControlName="nome" id="id_nome" class="form-control" placeholder="Informe o nome do produto">
+          </div>
+          <div class="form-group">
+              <label for="id_preco">Preço</label>
+              <input type="number" formControlName="preco" id="id_preco" class="form-control" placeholder="Informe o preço do produto">
+          </div>
+          <div class="form-group">
+              <label for="id_quantidade">Quantidade</label>
+              <input type="text" formControlName="quantidade" id="id_quantidade" class="form-control" placeholder="Informe a quantidade do produto">
+          </div>
+          <div class="form-group">
+              <label for="id_imagem">URL da Imagem</label>
+              <input type="url" formControlName="url" id="id_imagem" class="form-control" placeholder="Informe a URL da imagem do produto">
+          </div>
+          <div class="form-group">
+          <button type="submit" [disabled]="produtoForm.invalid" class="btn btn-block btn-dark btn-lg">Registrar</button>
+          </div>
+      </form>
+    </fieldset>
+  </div>
+</ion-content>

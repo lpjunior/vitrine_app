@@ -4,24 +4,31 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      Lista Produtos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
-      </div>
-    </ion-item>
-  </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+<ion-content class="container">
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Image</th>
+        <th colspan="2">ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of produtos">
+        <td>{{ p.nome }}</td>
+        <td>{{ p.preco }}</td>
+        <td>{{ p.quantidade }}</td>
+        <td><a [href]="p.url">Imagem</a></td>
+        <td><button class="btn btn-dark btn-sm" (click)="editProduto(p.id)">Edit</button></td>
+        <td><button class="btn btn-danger btn-sm" (click)="deleteProduto(p.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
 </ion-content>

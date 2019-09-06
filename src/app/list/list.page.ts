@@ -1,39 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { Produto } from '../models/produto.model';
+import { ProdutoService } from '../services/produto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
   styleUrls: ['list.page.scss']
 })
-export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+export class ListPage {
+  
+  private produtos: Produto[];
+  constructor(private produtoService: ProdutoService, private router: Router) {}
+
+  ionViewWillEnter() {
+    this.listProduto();
   }
 
-  ngOnInit() {
+  listProduto() {
+    this.produtoService.selectProdutos().subscribe(
+      produtosDB => this.produtos = produtosDB,
+      errorDB => console.log(errorDB)
+    );
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  editProduto(id: number) {
+    this.router.navigate(['/edit', id]);
+  }
+  
+  deleteProduto(id: number) {
+    this.produtoService.deleteProduto(id).subscribe(
+      () => {
+        this.router.navigateByUrl('/list');
+        this.listProduto();
+      },
+      errorDelete => console.log(errorDelete)
+    );
+  }
 }

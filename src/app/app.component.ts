@@ -17,9 +17,14 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'Cadastro',
+      url: '/cadastro',
+      icon: 'barcode'
+    },
+    {
       title: 'List',
       url: '/list',
-      icon: 'list'
+      icon: 'filing'
     }
   ];
 
