@@ -16,7 +16,8 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'cadastro', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
-  { path: 'edit/:id', loadChildren: './cadastro/cadastro.module#CadastroPageModule' }
+  { path: 'edit/:id', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
+  { path: 'vitrine', loadChildren: './vitrine/vitrine.module#VitrinePageModule' }
 ];
 
 @NgModule({

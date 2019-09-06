@@ -22,9 +22,14 @@ export class AppComponent {
       icon: 'barcode'
     },
     {
-      title: 'List',
+      title: 'Lista',
       url: '/list',
       icon: 'filing'
+    },
+    {
+      title: 'Vitrine',
+      url: '/vitrine',
+      icon: 'basket'
     }
   ];
 
